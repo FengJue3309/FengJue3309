@@ -1,0 +1,20 @@
+edition: 1.0.0
+name: my-html-page
+services:
+  my-service:
+    component: devsapp/fc
+    props:
+      region: cn-hangzhou # 按需修改地域
+      service:
+        name: html-service
+      function:
+        name: html-function
+        runtime: custom # 使用自定义运行时
+        codeUri: ./
+        handler: dummy-handler # 在custom运行时下可忽略
+      triggers:
+        - name: http
+          type: http
+          config:
+            authType: anonymous # 允许匿名访问，即无需认证
+            methods: [ 'GET', 'HEAD' ] # 静态页面通常只需处理这些请求
